@@ -4,8 +4,6 @@
  */
 package com.mycompany.rentalsystem;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author abhir
@@ -31,7 +29,7 @@ public class adminSignin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        usernameFeild = new javax.swing.JTextField();
+        emailIDFeild = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
         signiInButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
@@ -42,25 +40,14 @@ public class adminSignin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ADMIN SIGN IN");
+        jLabel2.setText("SIGN IN");
         jLabel2.setOpaque(true);
 
-        jLabel1.setText("Username");
+        jLabel1.setText("Email");
 
         jLabel3.setText("Password");
 
-        usernameFeild.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFeildActionPerformed(evt);
-            }
-        });
-
         signiInButton.setText("SIGN IN");
-        signiInButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signiInButtonActionPerformed(evt);
-            }
-        });
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -75,13 +62,15 @@ public class adminSignin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(usernameFeild)
+                    .addComponent(emailIDFeild)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59))
             .addGroup(layout.createSequentialGroup()
@@ -99,7 +88,7 @@ public class adminSignin extends javax.swing.JFrame {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usernameFeild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailIDFeild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -117,25 +106,7 @@ public class adminSignin extends javax.swing.JFrame {
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
-        new userSelector().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
-
-    private void usernameFeildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFeildActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFeildActionPerformed
-
-    private void signiInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signiInButtonActionPerformed
-        // TODO add your handling code here:
-        String username=usernameFeild.getText();
-        String password=new String(passwordField.getPassword());
-        if(username.equals("Admin") && password.equals("hloadminhere")){
-            dispose();
-            new adminMain().setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(null, "Who are you ?\nWrong Password and Username");
-        }
-    }//GEN-LAST:event_signiInButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,11 +145,11 @@ public class adminSignin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JTextField emailIDFeild;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton signiInButton;
-    private javax.swing.JTextField usernameFeild;
     // End of variables declaration//GEN-END:variables
 }
