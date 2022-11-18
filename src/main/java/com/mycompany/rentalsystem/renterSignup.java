@@ -51,7 +51,7 @@ public class renterSignup extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("SIGN UP");
+        jLabel2.setText("RENTER SIGN UP");
         jLabel2.setOpaque(true);
 
         jLabel1.setText("Email");
