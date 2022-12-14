@@ -4,14 +4,35 @@
  */
 package com.mycompany.rentalsystem;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.*;
+
 
 /**
  *
  * @author abhir
  */
 public class userSelector extends javax.swing.JFrame {
-
+    
+    public Connection createConnection(){
+        String url="jdbc:mysql://localhost:3306/imscdb";
+        String user="root";
+        String password="hlomysql@2021";
+        Connection conn=null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn=DriverManager.getConnection(url,user,password);
+            System.out.println("Connection is Successful to the database"+url);
+        }catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }catch(SQLException throwables){
+            throwables.printStackTrace();
+        }
+        return conn;
+    }
     /**
      * Creates new form userSelector
      */
@@ -97,22 +118,25 @@ public class userSelector extends javax.swing.JFrame {
 
     private void adminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
-        adminSignin obj=new adminSignin();
+        dispose();        
+        Connection conn=createConnection();
+        adminSignin obj=new adminSignin(conn);
         obj.setVisible(true);
     }//GEN-LAST:event_adminButtonActionPerformed
 
     private void ownerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ownerActionPerformed
         // TODO add your handling code here:
         dispose();
-        ownerSignin own=new ownerSignin();
+        Connection conn=createConnection();
+        ownerSignin own=new ownerSignin(conn);
         own.setVisible(true);
     }//GEN-LAST:event_ownerActionPerformed
 
     private void renterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renterButtonActionPerformed
         // TODO add your handling code here:
-        dispose();
-        renterSignin rent=new renterSignin();
+        dispose();        
+        Connection conn=createConnection();
+        renterSignin rent=new renterSignin(conn);
         rent.setVisible(true);
     }//GEN-LAST:event_renterButtonActionPerformed
 
@@ -142,7 +166,7 @@ public class userSelector extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(userSelector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
