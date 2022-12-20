@@ -4,16 +4,23 @@
  */
 package com.mycompany.rentalsystem;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author abhir
  */
 public class ownSignup extends javax.swing.JFrame {
-
+    public Connection mdbConnection;
     /**
      * Creates new form adminSignin
+     * @param conn
      */
-    public ownSignup() {
+    public ownSignup(Connection conn){
+        mdbConnection=conn;
         initComponents();
     }
 
@@ -29,7 +36,7 @@ public class ownSignup extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         emailIDFeild = new javax.swing.JTextField();
-        signiInButton = new javax.swing.JButton();
+        signUpButton = new javax.swing.JButton();
         backButton = new javax.swing.JButton();
         phoneFeild = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -54,10 +61,10 @@ public class ownSignup extends javax.swing.JFrame {
 
         jLabel1.setText("Email");
 
-        signiInButton.setText("SIGN UP");
-        signiInButton.addActionListener(new java.awt.event.ActionListener() {
+        signUpButton.setText("SIGN UP");
+        signUpButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signiInButtonActionPerformed(evt);
+                signUpButtonActionPerformed(evt);
             }
         });
 
@@ -105,7 +112,7 @@ public class ownSignup extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 165, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(signiInButton)
+                    .addComponent(signUpButton)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -115,7 +122,7 @@ public class ownSignup extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailIDFeild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -141,10 +148,10 @@ public class ownSignup extends javax.swing.JFrame {
                     .addComponent(confirmFeild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(signiInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signUpButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(backButton)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,47 +163,66 @@ public class ownSignup extends javax.swing.JFrame {
         new userSelector().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
-    private void signiInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signiInButtonActionPerformed
+    private void signUpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_signiInButtonActionPerformed
+        String email=emailIDFeild.getText();
+        String name=NameFeild.getText();
+        String phone=phoneFeild.getText();
+        String dep=departmentFeild.getText();
+        String pass=new String(password.getPassword());
+        String confirm=confirmFeild.getText();
+        String id="C1009";
+        String query="INSERT INTO owners  VALUES ('"+id+"', '"+name+"','"+email+"', '"+phone+"', '"+dep+"', '"+pass+"')";
+        if(pass.equals(confirm)){
+            try{
+                Statement stmt = mdbConnection.createStatement();
+                stmt.execute(query);
+                System.out.println("Successfully added values using the query : \n    "+query);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Both the passwords doesn't match");
+        }
+    }//GEN-LAST:event_signUpButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ownSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ownSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ownSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ownSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ownSignup().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(ownSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(ownSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(ownSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(ownSignup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+////        java.awt.EventQueue.invokeLater(new Runnable() {
+////            public void run() {
+////                new ownSignup().setVisible(true);
+////            }
+////        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField NameFeild;
@@ -214,6 +240,6 @@ public class ownSignup extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPasswordField password;
     private javax.swing.JTextField phoneFeild;
-    private javax.swing.JButton signiInButton;
+    private javax.swing.JButton signUpButton;
     // End of variables declaration//GEN-END:variables
 }
